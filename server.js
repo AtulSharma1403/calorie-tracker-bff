@@ -12,6 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check endpoint for Render
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Calorie Tracker API is running' });
+});
+
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/activities', activityRoutes);
