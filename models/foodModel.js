@@ -30,10 +30,12 @@ const foodSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Serving size is required']
   },
-  category: {
+  foodGroup: {
     type: String,
-    enum: ['breakfast', 'lunch', 'dinner', 'snack', 'beverage'],
     required: [true, 'Food category is required']
+  },
+  foodId: {
+    type: String
   },
   createdAt: {
     type: Date,

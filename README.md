@@ -1,52 +1,68 @@
 # Calorie Tracker API
 
-A RESTful API for storing and managing user profiles with BMR calculations.
+A RESTful API for tracking calories, activities, and foods.
 
 ## Setup
 
-1. Install dependencies:
-```bash
-npm install
-```
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the server: `npm run dev`
+4. Access the API at: `http://localhost:3000`
+5. Access API documentation at: `http://localhost:3000/api-docs`
 
-2. Create a `.env` file in the root directory with the following variables:
+## Environment Variables
+
+Create a `.env` file with:
+
 ```
-PORT=3000
 MONGODB_URI=mongodb://localhost:27017/calorie-tracker
+PORT=3000
 ```
 
-3. Start the server:
-```bash
-npm run dev
+## API Documentation
+
+The API is documented using Swagger. You can access the interactive documentation at:
+```
+http://localhost:3000/api-docs
 ```
 
-## Deployment on Render
-
-1. Create a new Web Service on Render
-2. Connect your GitHub repository
-3. Configure the service:
-   - Build Command: `npm install`
-   - Start Command: `npm start`
-4. Add Environment Variables:
-   - `PORT`: 3000
-   - `MONGODB_URI`: Your MongoDB connection string 
+This provides a web interface to explore and test all available endpoints.
 
 ## API Endpoints
 
 ### Users
-
-- `POST /api/users` - Create a new user
 - `GET /api/users` - Get all users
+- `POST /api/users` - Create a new user
 
-## Example Request Body for Creating User
+### Activities
+- `GET /api/activities` - Get all activities
+- `POST /api/activities` - Create a new activity
 
-```json
-{
-  "name": "James",
-  "weight": 75.7,
-  "height": 180,
-  "gender": "male",
-  "dob": "1985-01-01",
-  "bmr": 1535.245
-}
-``` 
+### Foods
+- `GET /api/foods/groups` - Get all food groups
+- `GET /api/foods/group/:foodGroup` - Get foods by group
+- `POST /api/foods/userfood` - Add user food
+- `GET /api/foods/userfood` - Get user food
+
+### CSV Import API
+- `POST /api/csv/import-food` - Import food data from CSV file
+- `POST /api/csv/import-activity` - Import activity data from CSV file
+
+## CSV Import Process
+
+The API includes endpoints to import data from CSV files into the database. The CSV files are located in the `files` directory:
+
+1. `food-calories.csv` - Contains nutritional information about various foods
+2. `MET-values1.csv` - Contains Metabolic Equivalent of Task (MET) values for different activities
+
+To import the data, simply make a POST request to the respective endpoint:
+
+```bash
+# Import food data
+curl -X POST http://localhost:3000/api/csv/import-food
+
+# Import activity data
+curl -X POST http://localhost:3000/api/csv/import-activity
+```
+
+This will parse the CSV files and store the data in the MongoDB database. 
