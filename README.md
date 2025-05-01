@@ -53,7 +53,7 @@ This provides a web interface to explore and test all available endpoints.
 The API includes endpoints to import data from CSV files into the database. The CSV files are located in the `files` directory:
 
 1. `food-calories.csv` - Contains nutritional information about various foods
-2. `MET-values1.csv` - Contains Metabolic Equivalent of Task (MET) values for different activities
+2. `MET-values.csv` - Contains Metabolic Equivalent of Task (MET) values for different activities
 
 To import the data, simply make a POST request to the respective endpoint:
 
