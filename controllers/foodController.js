@@ -27,7 +27,7 @@ const addUserFood = async (req, res) => {
       const { userId, foodName, mealType, foodGroup, serving, date } = req.body;
       const food = await Food.findOne({ name: foodName }).lean();
       if (!food) return res.status(404).json({ error: 'Food not found' });
-      const calorie = Number(serving) * food.Calories;
+      const calorie = Number(serving) * food.calories;
       const userFood = new UserFood({
           userId, foodName, mealType, foodGroup, serving, calorie, date
       });
