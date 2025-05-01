@@ -2,7 +2,7 @@ const Food = require('../models/foodModel').Food;
 const UserFood = require('../models/foodModel').UserFood;
 const getUniqueFoodGroups = async (req, res) => {
   try {
-    const foodGroups = await Food.distinct('Food Group');
+    const foodGroups = await Food.distinct('foodGroup');
     res.status(200).json(foodGroups);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -12,7 +12,7 @@ const getUniqueFoodGroups = async (req, res) => {
 const getFoodsByGroup = async (req, res) => {
   try {
     const { foodGroup } = req.params;
-    const foods = await Food.find({ 'Food Group':foodGroup});
+    const foods = await Food.find({ 'foodGroup':foodGroup});
     if (foods.length === 0) {
       return res.status(404).json({ message: 'No foods found in this group' });
     }
